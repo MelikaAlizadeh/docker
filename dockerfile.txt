@@ -1,0 +1,19 @@
+
+FROM ubuntu:latest
+
+RUN apt-get update && \
+    apt-get install -y gcc && \
+    rm -rf /var/lib/apt/lists/*
+
+
+COPY memory-intensive.c /usr/src/memory-intensive.c
+
+
+WORKDIR /usr/src
+
+
+RUN gcc -O2 memory-intensive.c -o memory-intensive
+
+
+CMD ["./memory-intensive"]
+
